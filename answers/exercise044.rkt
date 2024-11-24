@@ -3,6 +3,10 @@
 (require 2htdp/image)
 (require 2htdp/universe)
 
+; A WorldState is a Number.
+; interpretation the number of pixels between
+; the left border of the scene and the center of the car
+
 (define WHEEL-RADIUS 5)
 (define WHEEL-DISTANCE (* WHEEL-RADIUS 4))
 (define SPACE
@@ -27,27 +31,38 @@
 (define HALF-CAR-WIDTH (/ CAR-WIDTH 2))
 (define CAR-HEIGHT (image-height CAR))  ; 23
 
-; WorldState -> WorldState
-; moves the car by 3 pixels for every clock tick
-(check-expect (tock 20) 23)
-(check-expect (tock 78) 81)
-(define (tock ws)
-  (+ ws 3))
-
 (define TREE
   (underlay/xy (circle 10 "solid" "green")
                9 15
                (rectangle 2 20 "solid" "brown")))
 (define TREE-HEIGHT (image-height TREE))
+
 (define BACKGROUND-WIDTH 200)
 (define BACKGROUND-HEIGHT 40)
 (define BACKGROUND (place-image TREE
                                 (* BACKGROUND-WIDTH 3/4)
                                 (- BACKGROUND-HEIGHT (/ TREE-HEIGHT 2))
                                 (empty-scene BACKGROUND-WIDTH BACKGROUND-HEIGHT)))
+
 (define Y-CAR (- BACKGROUND-HEIGHT (/ CAR-HEIGHT 2)))
-(define X-CAR-START (/ CAR-WIDTH 2))
-(define X-CAR-STOP (+ BACKGROUND-WIDTH (/ CAR-WIDTH 2)))
+
+; WorldState -> WorldState
+; moves a car across the world canvas, from left to right,
+; at the rate of three pixels per clock tick.
+; If the mouse is clicked anywhere on the canvas,
+; the car is placed at the x-coordinate of that click.
+(define (main ws)
+  (big-bang ws
+    [on-tick tock]
+    [on-mouse hyper]
+    [to-draw render]))
+
+; WorldState -> WorldState
+; moves the car by 3 pixels for every clock tick
+(check-expect (tock 20) 23)
+(check-expect (tock 78) 81)
+(define (tock ws)
+  (+ ws 3))
 
 ; WorldState -> Image
 ; places the car into the BACKGROUND scene,
@@ -70,14 +85,5 @@
     [(string=? "button-down" me) x-mouse]
     [else x-position-of-car]))
 
-; WorldState -> WorldState
-; A WorldState is a Number.
-; ws is the number of pixels between
-; the left border of the scene and the center of the car
-(define (main ws)
-  (big-bang ws
-    [on-tick tock]
-    [on-mouse hyper]
-    [to-draw render]))
-
+; Application
 (main 1)

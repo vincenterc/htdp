@@ -3,6 +3,10 @@
 (require 2htdp/image)
 (require 2htdp/universe)
 
+; A WorldState is a Number.
+; interpretation ws is the number of clock ticks
+; since the animation started
+
 (define WHEEL-RADIUS 5)
 (define WHEEL-DISTANCE (* WHEEL-RADIUS 4))
 (define SPACE
@@ -26,6 +30,32 @@
 (define CAR-WIDTH (image-width CAR))    ; 40
 (define HALF-CAR-WIDTH (/ CAR-WIDTH 2))
 (define CAR-HEIGHT (image-height CAR))  ; 23
+(define CAR-VELOCITY 3)
+
+(define TREE
+  (underlay/xy (circle 10 "solid" "green")
+               9 15
+               (rectangle 2 20 "solid" "brown")))
+(define TREE-HEIGHT (image-height TREE))
+
+(define BACKGROUND-WIDTH 200)
+(define BACKGROUND-HEIGHT 40)
+(define BACKGROUND (place-image TREE
+                                (* BACKGROUND-WIDTH 3/4)
+                                (- BACKGROUND-HEIGHT (/ TREE-HEIGHT 2))
+                                (empty-scene BACKGROUND-WIDTH BACKGROUND-HEIGHT)))
+
+(define Y-CAR (- BACKGROUND-HEIGHT (/ CAR-HEIGHT 2)))
+(define X-CAR-START (/ CAR-WIDTH 2))
+(define X-CAR-STOP (+ BACKGROUND-WIDTH (/ CAR-WIDTH 2)))
+
+; WorldState -> WorldState
+; moves a car from left to right on the world canvas
+(define (main ws)
+  (big-bang ws
+    [on-tick tock]
+    [to-draw render]
+    [stop-when end?]))
 
 ; WorldState -> WorldState
 ; plus 1 for every clock tick
@@ -33,22 +63,6 @@
 (check-expect (tock 78) 79)
 (define (tock ws)
   (+ ws 1))
-
-(define TREE
-  (underlay/xy (circle 10 "solid" "green")
-               9 15
-               (rectangle 2 20 "solid" "brown")))
-(define TREE-HEIGHT (image-height TREE))
-(define BACKGROUND-WIDTH 200)
-(define BACKGROUND-HEIGHT 40)
-(define BACKGROUND (place-image TREE
-                                (* BACKGROUND-WIDTH 3/4)
-                                (- BACKGROUND-HEIGHT (/ TREE-HEIGHT 2))
-                                (empty-scene BACKGROUND-WIDTH BACKGROUND-HEIGHT)))
-(define Y-CAR (- BACKGROUND-HEIGHT (/ CAR-HEIGHT 2)))
-(define X-CAR-START (/ CAR-WIDTH 2))
-(define X-CAR-STOP (+ BACKGROUND-WIDTH (/ CAR-WIDTH 2)))
-(define CAR-VELOCITY 3)
 
 ; WorldState -> Image
 ; places the car into the BACKGROUND scene,
@@ -68,14 +82,5 @@
   (> (+ (* CAR-VELOCITY ws) X-CAR-START)
      X-CAR-STOP))
 
-; WorldState -> WorldState
-; A WorldState is a Number.
-; ws is the number of clock ticks
-; since the animation started
-(define (main ws)
-  (big-bang ws
-    [on-tick tock]
-    [to-draw render]
-    [stop-when end?]))
-
+; Application
 (main 0)
