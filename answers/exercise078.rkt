@@ -4,7 +4,7 @@
 ; - 1String "a" through "z" or
 ; - #false
 
-(define-struct word [l1 l2 l3])
-; A world is a structure:
+(define-struct word [letter1 letter2 letter3])
+; A Word is a structure:
 ;   (make-word Letter Letter Letter)
-; interpretation a word consists of three lowercase letters
+; interpretation a word consists of three Letter(s)
