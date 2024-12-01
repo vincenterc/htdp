@@ -3,14 +3,14 @@
 (require 2htdp/image)
 (require 2htdp/universe)
 
+(define LOCKED "locked")
+(define CLOSED "closed")
+(define OPEN "open")
+
 ; A DoorState is one of:
 ; – LOCKED
 ; – CLOSED
 ; – OPEN
-
-(define LOCKED "locked")
-(define CLOSED "closed")
-(define OPEN "open")
 
 ; DoorState -> DoorState
 ; simulates a door with an automatic door closer
