@@ -30,9 +30,9 @@
     [to-draw render]))
 
 ; WorldState -> WorldState
-; move the cat by 3 pixels for every clock tick.
+; moves the cat by 3 pixels for every clock tick.
 ; When ws is greater than BACKGROUND-WIDTH + CAT1-WIDTH,
-; it resets and start from 0
+; it resets and starts from 0.
 (check-expect (tock 20) 23)
 (check-expect (tock 78) 81)
 (define (tock ws)

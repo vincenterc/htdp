@@ -16,8 +16,10 @@
 (define BORDER-WIDTH 2)
 (define BACKGROUND-COLOR "white")
 (define FRAME
-  (overlay (rectangle BAR-WIDTH BAR-HEIGHT "solid" BACKGROUND-COLOR)
-           (rectangle (+ BAR-WIDTH 4) (+ BAR-HEIGHT 4) "solid" "black")))
+  (overlay (rectangle BAR-WIDTH BAR-HEIGHT "solid" "white")
+           (rectangle (+ BAR-WIDTH (* BORDER-WIDTH 2))
+                      (+ BAR-HEIGHT (* BORDER-WIDTH 2))
+                      "solid" "black")))
 
 (define BAR-WIDTH-PER-HAPPINESS (/ BAR-WIDTH MAX-HAPPINESS))
 
@@ -29,15 +31,20 @@
     [on-key key-handler]))
 
 ; WorldState -> WorldState
-; decrease ws by DECREASES-RATE;
+; decreases ws by DECREASE-RATE;
 ; it never falls below 0.
 (check-expect (tock 100) 99.9)
 (check-expect (tock 50.1) 50)
 (check-expect (tock 0) 0)
 (define (tock ws)
-  (if (= ws MIN-HAPPINESS)
+  (if (< (new-happiness ws) MIN-HAPPINESS)
       MIN-HAPPINESS
-      (- ws DECREASE-RATE)))
+      (new-happiness ws)))
+
+; Number -> Number
+; produces a new happiness, given h
+(define (new-happiness h)
+  (- h DECREASE-RATE))
 
 ; WorldState -> Image
 ; show the level of happiness according ws
@@ -62,4 +69,4 @@
         [else ws]))
 
 ; Application
-(gauge-prog MAX-HAPPINESS)
+; (gauge-prog MAX-HAPPINESS)
