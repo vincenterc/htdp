@@ -55,7 +55,7 @@
 (define Y-HAPPINESS-GAUGE
   (+ HALF-FRAME-HEIGHT 5))
 
-; VCham -> Image
+; VCham -> VCham
 ; manages a walking chameleon and its happiness level.
 (define (happy-cham vc)
   (big-bang vc

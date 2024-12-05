@@ -12,7 +12,7 @@
 
 (define INITIAL-STATE "red")
 
-; Number -> Image
+; Number -> TrafficLight
 ; simulates a traffic light for a given duration
 (define (main duration)
   (big-bang INITIAL-STATE

@@ -48,7 +48,7 @@
 (define Y-HAPPINESS-GAUGE
   (+ HALF-FRAME-HEIGHT 5))
 
-; VCat -> Image
+; VCat -> VCat
 ; manages a walking cat and its happiness level.
 (define (happy-cat vc)
   (big-bang vc

@@ -21,7 +21,7 @@
 (define TEXT-WIDTH (- BACKGROUND-WIDTH BORDER-WIDTH BORDER-WIDTH))
 (define CURSOR (rectangle 1 20 "solid" "red"))
 
-; Editor -> Image
+; Editor -> Editor
 ; simulates a one-line editor
 (define (run ed)
   (big-bang ed
