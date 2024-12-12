@@ -81,3 +81,6 @@
 (define (stop? s)
   (cond [(or (string=? s DD) (string=? s ER)) #true]
         [else #false]))
+
+; Application
+; (sequence-recognition AA)

@@ -265,3 +265,7 @@
 (check-expect (clamp 0 1 3) 1)
 (define (clamp val mn mx)
   (max mn (min val mx)))
+
+; Application
+; (cat-cham 100 (make-v-cat 0 100))
+; (cat-cham 200 (make-v-cham 0 GREEN 100))
