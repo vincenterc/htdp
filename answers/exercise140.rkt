@@ -14,7 +14,7 @@
 (check-expect (all-true (cons #true (cons #false '()))) #false)
 (define (all-true alob)
   (cond [(empty? alob) #true]
-        [else (and (boolean=? (first alob) #true)
+        [else (and (first alob)
                    (all-true (rest alob)))]))
 
 ; List-of-bools -> Boolean
@@ -27,5 +27,5 @@
 (check-expect (one-true (cons #false (cons #false '()))) #false)
 (define (one-true alob)
   (cond [(empty? alob) #false]
-        [else (or (boolean=? (first alob) #true)
+        [else (or (first alob)
                   (one-true (rest alob)))]))
