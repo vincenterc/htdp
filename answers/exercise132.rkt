@@ -25,6 +25,7 @@
      (or (string=? (first alon) "Flatt")
          (contains-flatt? (rest alon)))]))
 
+; Application
 ; (contains-flatt?
 ;  (cons
 ;   "Fagan"

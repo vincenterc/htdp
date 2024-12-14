@@ -27,6 +27,6 @@
       (error 'our-rest "...")
       (pair-right a-list)))
 
+; Application
 ; (our-first (our-cons "a" '()))
-
 ; (our-rest (our-cons "a" '()))

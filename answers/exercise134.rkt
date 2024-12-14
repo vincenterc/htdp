@@ -25,4 +25,5 @@
      (or (string=? (first alos) s)
          (contains? s (rest alos)))]))
 
+; Application
 ; (contains? "Flatt" (cons "b" (cons "Flatt" '())))

@@ -14,7 +14,7 @@
      (or (string=? (first alon) "Flatt")
          (contains-flatt? (rest alon)))]))
 
+; Application
 ; (contains-flatt? (cons "Flatt" (cons "C" '())))
-
 ; (contains-flatt?
 ;   (cons "A" (cons "Flatt" (cons "C" '()))))
