@@ -53,13 +53,13 @@
   (overlay (col ROWS (row COLUMNS SQUARE))
            (empty-scene (* SQUARE-SIZE COLUMNS) (* SQUARE-SIZE ROWS))))
 
-; A List-of-Posns is one of:
+; A List-of-posns is one of:
 ; – '()
-; – (cons Posn List-of-Posns)
-; interpretation a list of Posns
+; – (cons Posn List-of-posns)
+; interpretation a list of Posn structures
 
-; List-of-Posns -> Image
-; adds red dots, whose coordinates are specified by the Posns in l,
+; List-of-posns -> Image
+; adds red dots, with coordinates specified by the Posn structures in l,
 ; to the image of the lecture hall
 (check-expect (add-balloons '()) LECTURE-HALL)
 (check-expect (add-balloons (cons (make-posn 20 30)
