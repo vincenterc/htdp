@@ -19,7 +19,19 @@
               (list (list 1 2 3) (list 1 2) (list 1)))
 (define (prefixes l)
   (cond [(empty? l) '()]
-        [else (cons l (prefixes (reverse (rest (reverse l)))))]))
+        [else (cons l (prefixes (remove-last l)))]))
+
+; Lo1s -> Lo1s
+; removes the last 1String in l
+(check-expect (remove-last (list 1))
+              '())
+(check-expect (remove-last (list 1 2))
+              (list 1))
+(check-expect (remove-last (list 1 2 3))
+              (list 1 2))
+(define (remove-last l)
+  (cond [(empty? (rest l)) '()]
+        [else (cons (first l) (remove-last (rest l)))]))
 
 ;; Lo1s -> Llo1s
 ; produces the list of all suffixes given l
