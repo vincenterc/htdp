@@ -90,10 +90,17 @@
 (define (max-count llc)
   (cond [(empty? llc) '()]
         [(empty? (rest llc)) (first llc)]
-        [else (if (> (letter-count-count (first llc))
-                     (letter-count-count (max-count (rest llc))))
-                  (first llc)
-                  (max-count (rest llc)))]))
+        [else (select-max-count (first llc) (max-count (rest llc)))]))
+
+; Letter-Count Letter-Count -> Letter-Count
+; return the Letter-Count with the maximum count
+(check-expect (select-max-count (make-letter-count "a" 100)
+                                (make-letter-count "b" 150))
+              (make-letter-count "b" 150))
+(define (select-max-count lc1 lc2)
+  (if (> (letter-count-count lc1) (letter-count-count lc2))
+      lc1
+      lc2))
 
 ; List-of-Letter-Counts -> List-of-Letter-Counts
 ; sorts a list of Letter-Counts by count

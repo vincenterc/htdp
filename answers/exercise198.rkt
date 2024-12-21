@@ -50,6 +50,7 @@
    (most-words-dictionary (words-by-first-letter d))))
 
 ; Dictionary -> Letter-Count
+; produces the Letter-Count given d
 (define (one-letter-dictionary->letter-count d)
   (make-letter-count
    (string-ith (first d) 0)
@@ -60,10 +61,17 @@
 ; in the list of Dictionarys lod
 (define (most-words-dictionary lod)
   (cond [(empty? lod) '()]
-        [else (if (> (length (first lod))
-                     (length (most-words-dictionary (rest lod))))
-                  (first lod)
-                  (most-words-dictionary (rest lod)))]))
+        [else (select-most-words-dictionary
+               (first lod)
+               (most-words-dictionary (rest lod)))]))
+
+; Dictionary Dictionary -> Dictionary
+; produces the Dictionary with the most words given d1 and d2
+(check-expect (select-most-words-dictionary (list "a1" "a2" "a3")
+                                            (list "b1" "b2"))
+              (list "a1" "a2" "a3"))
+(define (select-most-words-dictionary d1 d2)
+  (if (> (length d1) (length d2)) d1 d2))
 
 ; Dictionary -> List-of-Dictionarys
 ; produces a list of Dictionarys, one per Letter, given d
@@ -148,10 +156,17 @@
 (define (max-count llc)
   (cond [(empty? llc) '()]
         [(empty? (rest llc)) (first llc)]
-        [else (if (> (letter-count-count (first llc))
-                     (letter-count-count (max-count (rest llc))))
-                  (first llc)
-                  (max-count (rest llc)))]))
+        [else (select-max-count (first llc) (max-count (rest llc)))]))
+
+; Letter-Count Letter-Count -> Letter-Count
+; return the Letter-Count with the maximum count
+(check-expect (select-max-count (make-letter-count "a" 100)
+                                (make-letter-count "b" 150))
+              (make-letter-count "b" 150))
+(define (select-max-count lc1 lc2)
+  (if (> (letter-count-count lc1) (letter-count-count lc2))
+      lc1
+      lc2))
 
 ; List-of-Letter-Counts -> List-of-Letter-Counts
 ; sorts a list of Letter-Counts by count
@@ -174,5 +189,6 @@
                   (cons (first llc) (insert-lc lc (rest llc))))]))
 
 ; Application
-; (most-frequent AS-LIST)
-; (most-frequent.v2 AS-LIST)
+; (check-expect
+;   (most-frequent AS-LIST)
+;   (most-frequent.v3 AS-LIST))
