@@ -1,10 +1,12 @@
 #lang htdp/bsl
 
-; A List-of-numbers is one of:
-; – '()
-; – (cons Number List-of-numbers)
+; A PositiveNumber is a Number greater than/equal to 0
 
-; List-of-numbers -> List-of-numbers
+; A List-of-pnumbers is one of:
+; – '()
+; – (cons PositiveNumber List-of-pnumbers)
+
+; List-of-pnumbers -> List-of-pnumbers
 ; converts a list of US$ amounts into a list of € amounts
 (check-expect (convert-euro '())
               '())
@@ -17,7 +19,7 @@
     [(empty? l) '()]
     [else (cons (* (first l) 0.95) (convert-euro (rest l)))]))
 
-; Number List-of-numbers -> List-of-numbers
+; Number List-of-pnumbers -> List-of-pnumbers
 ; converts a list of US$ amounts into a list of € amounts
 ; according to an exchange rate er
 (check-expect (convert-euro* 0.95 '())
