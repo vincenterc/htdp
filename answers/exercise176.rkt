@@ -37,7 +37,7 @@
     [else (cons (first* lln) (transpose (rest* lln)))]))
 
 ; Matrix -> Row
-; produces the first column of mat1 as Row
+; produces the first column of lln as Row
 (check-expect (first* mat1) wor1)
 (check-expect (first* mat2) wor3)
 (define (first* lln)
@@ -46,6 +46,8 @@
                     (first* (rest lln)))]))
 
 ; Matrix -> Matrix
+; produces a matrix by consuming a matrix lln
+; and removing its first column
 (check-expect (rest* mat1) (cons (cons 12 '())
                                  (cons (cons 22 '())
                                        '())))
