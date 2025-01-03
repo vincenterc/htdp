@@ -74,7 +74,10 @@
          (append (insert-everywhere/word s (first low))
                  (insert-everywhere/in-all-words.v2 s (rest low)))]))
 
-; 1String Word -> List-or-words
+; 1String Word -> List-of-words
+; produces a list of words with s inserted
+; at the beginning, between all letters,
+; and at the end of the given word w
 (check-expect (insert-everywhere/word "a" '())
               (list (list "a")))
 (check-expect (insert-everywhere/word "a" (list "b"))
@@ -90,6 +93,8 @@
                      (insert-everywhere/word s (rest w))))]))
 
 ; 1String List-of-words -> List-of-words
+; produces a list of words with s inserted
+; at the beginning of all words of the given list low
 (check-expect (insert-at-beginning/in-all-word "a" '())
               '())
 (check-expect (insert-at-beginning/in-all-word "a" (list '()))
