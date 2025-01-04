@@ -2,11 +2,6 @@
 
 (define EURO->US-DOLLAR 1.06)
 
-; [X Y] [X -> Y] [List-of X] -> [List-of Y]
-; constructs a list by applying f to each item on lx
-; (map f (list x-1 ... x-n)) == (list (f x-1) ... (f x-n))
-; (define (map f lx) ...)
-
 ; A PositiveNumber is a Number greater than/equal to 0
 
 ; [List-of PositiveNumber] -> [List-of PositiveNumber]
