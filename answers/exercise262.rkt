@@ -10,7 +10,7 @@
 ; – (cons Number Row)
 
 ; PositiveInteger -> Matrix
-; creates a diagonal square given n0
+; creates a diagonal square of size n0
 (check-expect (identityM 1)
               (list (list 1)))
 (check-expect (identityM 3)
