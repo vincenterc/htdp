@@ -2,22 +2,20 @@
 
 (define EURO->US-DOLLAR 1.06)
 
-; A PositiveNumber is a Number greater than/equal to 0
-
-; [List-of PositiveNumber] -> [List-of PositiveNumber]
+; [List-of Number] -> [List-of Number]
 ; converts a list of US$ amounts into a list of € amounts
 ; based on an exchange rate EURO->US-DOLLAR
 (check-expect (convert-euro '())
               '())
-(check-expect (convert-euro '(1))
-              '(1.06))
-(check-expect (convert-euro '(5 1))
-              '(5.3 1.06))
+(check-expect (convert-euro '(1.06))
+              '(1))
+(check-expect (convert-euro '(5.3 1.06))
+              '(5 1))
 (define (convert-euro l)
-  (local (; PositiveNumber -> PositiveNumber
+  (local (; Number -> Number
           ; converts a US$ amount into a € amount
           (define (euro->us-dollar n)
-            (* n EURO->US-DOLLAR)))
+            (/ n EURO->US-DOLLAR)))
     (map euro->us-dollar l)))
 
 ; [List-of Number] -> [List-of Number]
