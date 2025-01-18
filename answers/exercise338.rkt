@@ -8,9 +8,9 @@
 ; A Dir is a structure:
 ;   (make-dir String Dir* File*)
 
-; A Dir* is a [List-of Dir]
+; A Dir* is [List-of Dir]
 
-; A File* is a [List-of File]
+; A File* is [List-of File]
 
 (define file-part1 (make-file "part1" 99 ""))
 (define file-part2 (make-file "part2" 52 ""))

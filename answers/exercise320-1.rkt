@@ -6,7 +6,7 @@
 ; – Symbol
 ; – SL
 
-; An SL is a [List-of S-expr]
+; An SL is [List-of S-expr]
 
 ; S-expr Symbol -> N
 ; counts all occurrences of sy in sexp

@@ -6,7 +6,7 @@
 
 ; An S-expr is a [Maybe Atom]
 
-; An SL is a [List-of [Maybe Atom]]
+; An SL is [List-of [Maybe Atom]]
 
 ; An Atom is one of:
 ; – Number

@@ -20,7 +20,7 @@
 ; Youngest Generation:
 (define Gustav (make-child Fred Eva "Gustav" 1988 "brown"))
 
-; An FF (short for family forest) is a [List-of FT]
+; An FF (short for family forest) is [List-of FT]
 ; interpretation a family forest represents several
 ; families (say, a town) and their ancestor trees
 

@@ -8,9 +8,9 @@
 ; A Dir.v3 is a structure:
 ;   (make-dir String Dir* File*)
 
-; A Dir* is a [List-of Dir.v3]
+; A Dir* is [List-of Dir.v3]
 
-; A File* is a [List-of File.v3]
+; A File* is [List-of File.v3]
 
 (define file-part1 (make-file "part1" 99 ""))
 (define file-part2 (make-file "part2" 52 ""))
