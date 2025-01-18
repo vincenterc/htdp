@@ -81,7 +81,8 @@
                       (eval-expression (mul-right be)))]))
 
 ; BSL-var-expr Symbol Number -> BSL-var-expr
-; produces a BSL-var-expr like ex with all occurrences of x replaced by v
+; produces a BSL-var-expr like ex with all occurrences of x
+; replaced by v
 (define (subst ex x v)
   (cond [(number? ex) ex]
         [(symbol? ex) (if (symbol=? ex x) v ex)]

@@ -9,7 +9,8 @@
 ; – (make-mul BSL-var-expr BSL-var-expr)
 
 ; BSL-var-expr Symbol Number -> BSL-var-expr
-; produces a BSL-var-expr like ex with all occurrences of x replaced by v
+; produces a BSL-var-expr like ex with all occurrences of x
+; replaced by v
 (check-expect (subst 'x 'x 5) 5)
 (check-expect (subst (make-add 'x 3) 'x 5)
               (make-add 5 3))
