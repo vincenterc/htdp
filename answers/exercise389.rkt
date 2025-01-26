@@ -7,8 +7,8 @@
 ; [List-of String] [List-of String] -> [List-of PhoneRecord]
 ; produces a list of phone records given a list of names lon and
 ; a list of phone numbers lopn
-; assumes lon and lopn are of equal length
-; assumes the corresponding list items belong to the same person
+; assume lon and lopn are of equal length
+; assume the corresponding list items belong to the same person
 (check-expect
  (zip '() '())
  '())

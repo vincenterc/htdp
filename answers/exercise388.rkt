@@ -20,8 +20,8 @@
 
 ; [List-of Employee] [List-of Work] -> [List-of Wage]
 ; produces a list of Wage for loe according to low
-; assumes loe and low are of equal length
-; assumes the corresponding list items belong to the same employee
+; assume loe and low are of equal length
+; assume the corresponding list items belong to the same employee
 (check-expect
  (wages*.v2 '() '())
  '())

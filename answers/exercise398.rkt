@@ -3,7 +3,7 @@
 ; [List-of Number] [List-of Number] -> Number
 ; produces the value of an linear combination lc
 ; according to a list of variable values lovv
-; assumes lc and lovv have the same length
+; assume lc and lovv are of equal length
 (check-expect (value '() '()) 0)
 (check-expect (value '(5) '(10)) 50)
 (check-expect (value '(5 17) '(10 1)) 67)

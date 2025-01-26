@@ -33,7 +33,7 @@
 
 ; Dir -> N
 ; computes the total size of all the files in dir
-; assumes that storing a directory costs 1 file storage unit
+; assume storing a directory costs 1 file storage unit
 (check-expect (du (make-dir "Empty" '() '())) 0)
 (check-expect (du dir-Code) 10)
 (check-expect (du dir-Libs) 31)
