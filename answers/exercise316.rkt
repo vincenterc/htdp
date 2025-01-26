@@ -5,7 +5,7 @@
 ; – String
 ; – Symbol
 
-; Atom -> Boolean
+; Any -> Boolean
 ; determines whether the given value a is an Atom
 (check-expect (atom? 1) #true)
 (check-expect (atom? "hello") #true)

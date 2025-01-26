@@ -68,7 +68,8 @@
   (and (cons? s) (cons? (rest s)) (cons? (rest (rest s)))
        (empty? (rest (rest (rest s))))))
 
-; Atom -> Boolean
+; Any -> Boolean
+; determines whether the given value a is an Atom
 (define (atom? a)
   (or (number? a)
       (string? a)

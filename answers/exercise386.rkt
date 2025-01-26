@@ -137,7 +137,8 @@
         #false
         (second assq-result))))
 
-; Atom -> Boolean
+; Any -> Boolean
+; determines whether the given value a is an Atom
 (define (atom? a)
   (or (number? a)
       (string? a)
