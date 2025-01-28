@@ -18,7 +18,13 @@
   (cond [(zero? n) 0]
         [else (add1 (sub (- n 1/185)))]))
 
-; Application
 ; (add 185)
+; ==
+; #i0.9999999999999949
+
 ; (sub 1)
+; ==
+; 185
+
 ; (sub #i1.0)
+; out of memory
