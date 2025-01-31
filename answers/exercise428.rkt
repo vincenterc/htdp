@@ -1,7 +1,5 @@
 #lang htdp/isl+
 
-(define THRESHOLD 5)
-
 ; [List-of Number] -> [List-of Number]
 ; produces a sorted version of alon
 (check-expect
