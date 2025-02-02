@@ -4,7 +4,7 @@
 ; – 0
 ; – (add1 N)
 
-; [List-of Any] N -> [List-of Any]
+; [List-of X] N -> [List-of X]
 ; produces the first n items from l or all of l if it is too short
 (check-expect (take '() 0) '())
 (check-expect (take '() 2) '())
@@ -18,7 +18,7 @@
          (cons (first l)
                (take (rest l) (sub1 n)))]))
 
-; [List-of Any] N -> [List-of Any]
+; [List-of X] N -> [List-of X]
 ; produces l with the first n items removed
 ; '() if l is too short
 (check-expect (drop '() 0) '())
