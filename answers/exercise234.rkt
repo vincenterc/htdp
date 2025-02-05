@@ -3,7 +3,7 @@
 (require 2htdp/web-io)
 
 ; A Rank is a list of two items:
-; (list Number String)
+;   (list Number String)
 
 ; List-of-ranks is one of:
 ; '()
