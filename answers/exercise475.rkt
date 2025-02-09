@@ -44,50 +44,30 @@
 (define (find-path origination destination G)
   (cond
     [(symbol=? origination destination) (list destination)]
-    [else (local (; [List-of Node] Node Graph -> [Maybe Path]
+    [else (local (; Node Graph -> [List-of Node]
+                  ; finds the list of immediate neighbors of n in g
+                  (define (neighbors n g)
+                    (local (; [Maybe NN]
+                            (define nn (assq n g)))
+                      (if (boolean? nn)
+                          '()
+                          (second nn))))
+                  ; [List-of Node] Node Graph -> [Maybe Path]
                   ; finds a path from some node on lo-Os to D
                   ; if there is no path, the function produces #false
-                  (define (find-path/list lo-Os D g)
+                  (define (find-path/list lo-Os)
                     (foldl (lambda (o res)
-                             (if (cons? res) res (find-path o D g)))
+                             (if (cons? res)
+                                 res
+                                 (find-path o destination G)))
                            #false
                            lo-Os))
                   (define next (neighbors origination G))
                   (define candidate
-                    (find-path/list next destination G)))
+                    (find-path/list next)))
             (cond
               [(boolean? candidate) #false]
               [else (cons origination candidate)]))]))
-
-; Node Graph -> [List-of Node]
-; finds the list of immediate neighbors of n in g
-(check-expect (neighbors 'A '()) '())
-(check-expect (neighbors 'A sample-graph) '(B E))
-(check-expect (neighbors 'D sample-graph) '())
-(define (neighbors n g)
-  (local (; [Maybe NN]
-          (define nn (assq n g)))
-    (if (boolean? nn)
-        '()
-        (second nn))))
-
-; Graph -> Boolean
-; determines whether there is a path between every pair of nodes in g
-(check-expect (test-on-all-nodes sample-graph) #false)
-(define (test-on-all-nodes g)
-  (local ((define all-nodes
-            (map (lambda (nn) (first nn)) g))
-          (define all-pairs
-            (foldr
-             (lambda (n1 ap)
-               (append
-                (foldr (lambda (n2 a)
-                         (if (symbol=? n1 n2) a (cons (list n1 n2) a)))
-                       '() all-nodes)
-                ap))
-             '() all-nodes)))
-    (andmap (lambda (p) (cons? (find-path (first p) (second p) g)))
-            all-pairs)))
 
 ; Racket's ormap returns first non-false value;
 ; however, ISL's ormap expects a boolean value.
