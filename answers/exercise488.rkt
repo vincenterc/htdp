@@ -1,6 +1,6 @@
 #lang htdp/isl+
 
-; f(n) = n x log(n)
+; f(n) = n * log(n)
 ; g(n) = n^2
 
 ; n     1    5  10   100

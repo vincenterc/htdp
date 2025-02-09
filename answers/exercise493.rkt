@@ -23,5 +23,5 @@
 ; Each add-as-last call requires n recursions of add-as-last
 ; if the size of the list is n.
 ; The total recursive calls of add-as-last is n^2 / 2 - n / 2
-; So the total steps is n^2 / 2 + n / 2 (n + n^2 / 2 - n / 2).
+; So the total steps is n + n^2 / 2 - n / 2 = n^2 / 2 + n / 2 .
 ; That is O(n^2)
